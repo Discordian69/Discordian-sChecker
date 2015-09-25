@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.webNetflix = new System.Windows.Forms.WebBrowser();
             this.btnCheckAccount = new System.Windows.Forms.Button();
             this.lblThing = new System.Windows.Forms.Label();
@@ -38,6 +39,7 @@
             this.lblWorking = new System.Windows.Forms.Label();
             this.txtWorkingAccounts = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // webNetflix
@@ -126,6 +128,10 @@
             this.label1.TabIndex = 12;
             this.label1.Text = "By Discordian (nulled.io) 2015";
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -160,6 +166,7 @@
         private System.Windows.Forms.Label lblWorking;
         private System.Windows.Forms.TextBox txtWorkingAccounts;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

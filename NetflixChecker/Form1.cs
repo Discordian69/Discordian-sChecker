@@ -21,6 +21,7 @@ namespace NetflixChecker
         int Successful_Accounts = 0;
         int totalAccounts = 0;
         bool accountsChecked = false;
+        int timerseconds = 0;
 
         public frmMain()
         {
@@ -69,7 +70,12 @@ namespace NetflixChecker
                     lblWorking.Text = "Working Accounts: " + Successful_Accounts.ToString() + "/" + totalAccounts.ToString();
                     value++;
                     string[] line = accounts[value].Split(':');
-                    startChecking(line[0], line[1]);
+                    timer1.Start();
+                    if(timerseconds == 3)
+                    {
+                        timer1.Stop();
+                        startChecking(line[0], line[1]);
+                    }
                 }
             }
             else if (webNetflix.Url == new Uri("http://www.netflix.com/browse"))
@@ -180,6 +186,11 @@ namespace NetflixChecker
         private void frmMain_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            timerseconds++;
         }
     }
 }
