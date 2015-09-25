@@ -57,7 +57,6 @@ namespace NetflixChecker
                     catch (Exception ex)
                     {
                         MessageBox.Show("All accounts tested");
-                        this.Controls.Add(btnCheckAccount);
                         accountsChecked = true;
                     
                     }
@@ -153,7 +152,7 @@ namespace NetflixChecker
 
         private void btnCheckAccount_Click(object sender, EventArgs e)
         {
-            this.Controls.Remove(btnCheckAccount);
+            txtWorkingAccounts.Text = "";
             string[] line = accounts[0].Split(':');
             startChecking(line[0], line[1]);
         }
