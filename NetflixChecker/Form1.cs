@@ -21,21 +21,23 @@ namespace NetflixChecker
         int Successful_Accounts = 0;
         int totalAccounts = 0;
         bool accountsChecked = false;
-        int timerseconds = 0;
 
         public frmMain()
         {
             InitializeComponent();
-            webNetflix.Navigate("https://www.netflix.com/Login?locale=en-AU");
+            webNetflix.Navigate("https://www.netflix.com/Login");
+            webNetflix.ScriptErrorsSuppressed = true;
         }
 
         public void RefreshPage()
         {
             webNetflix.Navigate("https://www.netflix.com/SignOut?Inkctr=mL");
+            webNetflix.ScriptErrorsSuppressed = true;
         }
 
         private void webNetflix_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
+
             if (e.Url.AbsolutePath != (sender as WebBrowser).Url.AbsolutePath)
             {
                 return;
@@ -66,15 +68,19 @@ namespace NetflixChecker
                 }
                 else if (loginSuccessful == false && firstRun == false)
                 {
-                    lblResult.Text = "Login Failed!";
-                    lblWorking.Text = "Working Accounts: " + Successful_Accounts.ToString() + "/" + totalAccounts.ToString();
-                    value++;
-                    string[] line = accounts[value].Split(':');
-                    timer1.Start();
-                    if(timerseconds == 3)
+                    try
                     {
-                        timer1.Stop();
+                        webNetflix.ScriptErrorsSuppressed = true;
+                        lblResult.Text = "Login Failed!";
+                        lblWorking.Text = "Working Accounts: " + Successful_Accounts.ToString() + "/" + totalAccounts.ToString();
+                        value++;
+                        System.Threading.Thread.Sleep(3000);
+                        string[] line = accounts[value].Split(':');
                         startChecking(line[0], line[1]);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("All accounts tested");
                     }
                 }
             }
@@ -99,6 +105,14 @@ namespace NetflixChecker
             {
                 lblResult.Text = "";
                 webNetflix.Navigate("https://www.netflix.com/Login?locale=en-AU");
+            }
+            else if (webNetflix.Url == new Uri("https://www.netflix.com/au/"))
+            {
+                RefreshPage();
+            }
+            else if (webNetflix.Url == new Uri("http://dvd.netflix.com/MemberHome"))
+            {
+                RefreshPage();
             }
         }
 
@@ -188,9 +202,14 @@ namespace NetflixChecker
 
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            timerseconds++;
+            RefreshPage();
+        }
+
+        private void btnDebug_Click(object sender, EventArgs e)
+        {
+            RefreshPage();
         }
     }
 }

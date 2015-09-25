@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.webNetflix = new System.Windows.Forms.WebBrowser();
             this.btnCheckAccount = new System.Windows.Forms.Button();
             this.lblThing = new System.Windows.Forms.Label();
@@ -39,7 +38,7 @@
             this.lblWorking = new System.Windows.Forms.Label();
             this.txtWorkingAccounts = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btnDebug = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // webNetflix
@@ -128,16 +127,22 @@
             this.label1.TabIndex = 12;
             this.label1.Text = "By Discordian (nulled.io) 2015";
             // 
-            // timer1
+            // btnDebug
             // 
-            this.timer1.Interval = 1000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.btnDebug.Location = new System.Drawing.Point(841, 573);
+            this.btnDebug.Name = "btnDebug";
+            this.btnDebug.Size = new System.Drawing.Size(91, 23);
+            this.btnDebug.TabIndex = 13;
+            this.btnDebug.Text = "Debug Logout";
+            this.btnDebug.UseVisualStyleBackColor = true;
+            this.btnDebug.Click += new System.EventHandler(this.btnDebug_Click);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1252, 603);
+            this.Controls.Add(this.btnDebug);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtWorkingAccounts);
             this.Controls.Add(this.lblWorking);
@@ -167,7 +172,7 @@
         private System.Windows.Forms.Label lblWorking;
         private System.Windows.Forms.TextBox txtWorkingAccounts;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button btnDebug;
     }
 }
 
