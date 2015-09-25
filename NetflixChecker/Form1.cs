@@ -105,11 +105,7 @@ namespace NetflixChecker
                 lblResult.Text = "";
                 webNetflix.Navigate("https://www.netflix.com/Login?locale=en-AU");
             }
-            else if (webNetflix.Url == new Uri("https://www.netflix.com/au/"))
-            {
-                RefreshPage();
-            }
-            else if (webNetflix.Url == new Uri("http://dvd.netflix.com/MemberHome"))
+            else if (webNetflix.Url != new Uri("http://www.netflix.com/browse"))
             {
                 RefreshPage();
             }
@@ -164,6 +160,8 @@ namespace NetflixChecker
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 value = 0;
+                txtWorkingAccounts.Text = "";
+                Successful_Accounts = 0;
                 accountsChecked = false;
                 firstRun = true;
                 string FileName = ofd.FileName;
