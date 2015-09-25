@@ -115,6 +115,7 @@
             this.txtWorkingAccounts.Location = new System.Drawing.Point(963, 140);
             this.txtWorkingAccounts.Multiline = true;
             this.txtWorkingAccounts.Name = "txtWorkingAccounts";
+            this.txtWorkingAccounts.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtWorkingAccounts.Size = new System.Drawing.Size(277, 417);
             this.txtWorkingAccounts.TabIndex = 11;
             // 
