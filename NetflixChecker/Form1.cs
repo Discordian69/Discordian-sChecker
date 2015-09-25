@@ -89,7 +89,7 @@ namespace NetflixChecker
                 try
                 {
                     string[] line = accounts[value].Split(':');
-                    txtWorkingAccounts.Text += "\n\n" + line[0] + "    " + line[1] + "\n";
+                    txtWorkingAccounts.Text += "\n\n" + line[0] + ":" + line[1] + "\n";
                     loginSuccessful = true;
                     lblResult.Text = "Login Successful!";
                     Successful_Accounts++;
