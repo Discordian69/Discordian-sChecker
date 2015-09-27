@@ -25,7 +25,7 @@ namespace NetflixChecker
         public frmMain()
         {
             InitializeComponent();
-            webNetflix.Navigate("https://www.netflix.com/Login");
+            webNetflix.Navigate("https://www.netflix.com/Login?locale=en-AU");
             webNetflix.ScriptErrorsSuppressed = true;
         }
 
