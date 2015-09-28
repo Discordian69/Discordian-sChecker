@@ -21,12 +21,12 @@ namespace NetflixChecker
         int Successful_Accounts = 0;
         int totalAccounts = 0;
         bool accountsChecked = false;
-        string non_english_url;
+        string global_url;
 
         public frmMain()
         {
             InitializeComponent();
-            webNetflix.Navigate("https://www.netflix.com/Login?locale=en-AU");
+            webNetflix.Navigate("https://www.netflix.com/Login");
             webNetflix.ScriptErrorsSuppressed = true;
         }
 
@@ -38,14 +38,16 @@ namespace NetflixChecker
 
         private void webNetflix_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
-            non_english_url = webNetflix.Url.ToString();
+            global_url = webNetflix.Url.ToString();
 
             if (e.Url.AbsolutePath != (sender as WebBrowser).Url.AbsolutePath)
             {
                 return;
             }
 
-            if (webNetflix.Url == new Uri("https://www.netflix.com/Login?locale=en-AU") || non_english_url.Contains("https://www.netflix.com/Login"))
+            global_url = webNetflix.Url.ToString();
+
+            if (global_url.Contains("https://www.netflix.com/Login"))
             {
                 if (loginSuccessful == true && firstRun == false)
                 {
@@ -105,7 +107,7 @@ namespace NetflixChecker
             else if (webNetflix.Url == new Uri("https://www.netflix.com/logout?locale=en-AU"))
             {
                 lblResult.Text = "";
-                webNetflix.Navigate("https://www.netflix.com/Login?locale=en-AU");
+                webNetflix.Navigate("https://www.netflix.com/Login");
             }
             else if (webNetflix.Url != new Uri("http://www.netflix.com/browse"))
             {
